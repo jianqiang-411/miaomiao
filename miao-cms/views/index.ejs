@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://cdn.jsdelivr.net/npm/superagent"></script>
+    <script src="./javascripts/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <form action="/uploadBannerImg" method="post" enctype="multipart/form-data">
+      <input id="imgInput" type="file" name='userImg'> <br />
+      <input type="submit" value="上传图片">
+    </form>
+
+  </body>
+
+</html>

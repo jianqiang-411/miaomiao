@@ -1,0 +1,17 @@
+var unitFormat = function(number) {
+  var _res = '';
+  var _num = parseInt(number);
+  if (_num >= 1000000000) {
+    _res = (_num/1000000000).toFixed(1) + "B";
+  } else
+  if (_num >= 1000000) {
+    _res = (_num/1000000).toFixed(1) + "M";
+  } else if (_num >= 1000) {
+    _res = (_num/1000).toFixed(1) + "K";
+  } else {
+    _res = number.toString();
+  }
+  return _res;
+}
+
+module.exports.unitFormat = unitFormat;

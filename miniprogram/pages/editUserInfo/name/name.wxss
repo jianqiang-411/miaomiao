@@ -1,0 +1,11 @@
+/* miniprogram/pages/name/name.wxss */
+
+.name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  border: 1px solid #707070;
+}

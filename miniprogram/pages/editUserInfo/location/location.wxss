@@ -1,0 +1,7 @@
+/* miniprogram/pages/location/location.wxss */
+.location {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx;
+}

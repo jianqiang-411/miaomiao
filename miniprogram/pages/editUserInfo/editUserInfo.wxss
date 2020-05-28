@@ -1,0 +1,17 @@
+/* miniprogram/pages/editUserInfo/editUserInfo.wxss */
+.editUserInfo-list {
+  padding: 10rpx;
+}
+
+.editUserInfo-list-item {
+  height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed #707070;
+}
+
+.editUserInfo-list-text {
+  font-size: 12px;
+  color: red;
+}

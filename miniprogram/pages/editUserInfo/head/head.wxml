@@ -1,0 +1,6 @@
+<!--miniprogram/pages/head/head.wxml-->
+  <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">使用微信头像</button>
+  <button bindtap="handleButton">自定义头像</button>
+
+<image wx:if="{{ userPhoto }}" src=" {{ userPhoto }}" bindtap="handleUploadImage">
+</image>
