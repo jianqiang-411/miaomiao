@@ -169,6 +169,34 @@ Page({
         }
       })
   },
+  getDataResult() {
+    db.collection('dataResult')
+      .where({
+        userId: app.userInfo._id
+      })
+      .watch({
+        onChange: function (snapshot) {
+          console.log('docs\'s changed events', snapshot)
+          if (snapshot.docChanges.length) {
+            let list = snapshot.docChanges[0].doc.list;
+            if (list.length) {
+              wx.showTabBarRedDot({
+                index: 2,
+              })
+              app.userMessage = list;
+            } else {
+              wx.hideTabBarRedDot({
+                index: 2,
+              })
+              app.userMessage = [];
+            }
+          }
+        },
+        onError: function (err) {
+          console.error('the watch closed because of error', err)
+        }
+      })
+  },
   getUserLocation() {
     wx.getLocation({
       type: 'gcj02',
