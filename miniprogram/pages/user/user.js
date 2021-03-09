@@ -56,6 +56,14 @@ Page({
       });
 
     });
+
+
+    wx.cloud.callFunction({
+      name: 'bet',
+      data: {key1: 111, key2: "222"},
+    }).then((res) => {
+      console.error("res====================", res);
+    });
   },
 
   /**

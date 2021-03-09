@@ -14,17 +14,22 @@ exports.main = async (event, context) => {
   //event.data _id:xxx bet big(small) xxx
   console.log("event=======", event);
   // console.log(context)
-  db.collection('aaaa').doc('configInfo').get({
-    success: function (res) {
-      // res.data 包含该记录的数据
-      console.log("res.data=====", res.data);
-    }
+
+
+  return new Promise((resolve, reject) => {
+    // setTimeout(() => {
+    //   resolve("abcdefg");
+    // }, 1000);
+
+    db.collection('config').doc('configInfo').get({
+      success: function (res) {
+        // res.data 包含该记录的数据
+        resolve("123456");
+      },
+      fail: function (err) {
+        reject("123456789");
+      }
+    });
   });
-  // const wxContext = cloud.getWXContext()
-  // return {
-  //   event,
-  //   openid: wxContext.OPENID,
-  //   appid: wxContext.APPID,
-  //   unionid: wxContext.UNIONID,
-  // }
+
 }
