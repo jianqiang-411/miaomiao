@@ -172,21 +172,7 @@ Page({
         }
       })
   },
-  getDataResult() {
-    // db.collection('dataResult_20210307')
-    //   .where({
-    //     _id: _.gt(202103070000)
-    //   })
-    //   .orderBy('_id', 'desc')
-    //   .limit(3)
-    //   .get()
-    //   .then((res) => {
-    //     console.log("a===bb==aaa====", res)
-    
-
-    //   });
-
-    
+  getDataResult() {    
       db.collection('dataResult_20210307')
         .where({
           _id: _.gt(202103070000)
@@ -204,6 +190,9 @@ Page({
                 
             //   }
             // }
+
+            //如果之前一局有bet，则带着最新的_id做查询处理
+
           },
           onError: function (err) {
             console.error('the watch closed because of error', err)
