@@ -60,13 +60,18 @@ exports.main = async (event, context) => {
 
   //更新状态
   try {
+    let dateFmtQiNext = 0;
     if (Number(qi) + 1 === 1440) {
       //+10s到下一分钟，计算下一期的数值
       let timestampNext = timestamp + 10 * 1000;
       let dateNext = new Date(timestampNext);
       let qiNext = (dateNext.getHours() * 60 + dateNext.getMinutes() + 1).toString().padStart(4, "0");
-      let dateFmtQiNext = Number((moment(dateNext).format("YYYYMMDD") + qiNext));
+      dateFmtQiNext = Number((moment(dateNext).format("YYYYMMDD") + qiNext));
+    } else {
+      dateFmtQiNext = dateFmtQi + 1;
     }
+
+    //先锁定库，阻止bet结果入库时的下注消息，等处理完了才能下注
     db.collection('status').doc('todo-status-info').update({
       data: {
         isDoneJieSuan: false,
@@ -75,8 +80,33 @@ exports.main = async (event, context) => {
       success: function (res) {
         // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
         //console.log("res: ", res);
+
+        //处理bet结果入库
+        db.collection('bet').doc('').update({
+          data: {
+            isDoneJieSuan: false,
+            numCurQi: dateFmtQiNext
+          },
+          success: function (res) {
+            // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
+            //console.log("res: ", res);
+    
+            //处理bet结果入库
+    
+    
+          }
+        });
+
       }
     });
+
+
+    //处理bet结果入库
+
+
+    //解锁库，置状态为可下注
+
+
   } catch (error) {
     console.error(error);
   }
