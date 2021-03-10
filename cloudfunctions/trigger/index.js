@@ -72,7 +72,7 @@ exports.main = async (event, context) => {
     }
 
     //先锁定库，阻止bet结果入库时的下注消息，等处理完了才能下注
-    db.collection('status').doc('todo-status-info').update({
+    db.collection('config').doc('configInfo').update({
       data: {
         isDoneJieSuan: false,
         numCurQi: dateFmtQiNext
