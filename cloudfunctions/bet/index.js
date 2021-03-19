@@ -38,7 +38,7 @@ exports.main = async (event, context) => {
         return await db.collection(`bet_${strDate}`).add({
           data: {
             _id: numCurQi,
-            bets: _.push(betObj)
+            bets: [betObj]
           }
         });
       } else {
