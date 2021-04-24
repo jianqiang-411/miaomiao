@@ -82,20 +82,20 @@ exports.main = async (event, context) => {
         //console.log("res: ", res);
 
         //处理bet结果入库
-        db.collection('bet').doc('').update({
-          data: {
-            isDoneJieSuan: false,
-            numCurQi: dateFmtQiNext
-          },
-          success: function (res) {
-            // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
-            //console.log("res: ", res);
+        // db.collection('bet').doc('').update({
+        //   data: {
+        //     isDoneJieSuan: false,
+        //     numCurQi: dateFmtQiNext
+        //   },
+        //   success: function (res) {
+        //     // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
+        //     //console.log("res: ", res);
     
-            //处理bet结果入库
+        //     //处理bet结果入库
     
     
-          }
-        });
+        //   }
+        // });
 
       }
     });

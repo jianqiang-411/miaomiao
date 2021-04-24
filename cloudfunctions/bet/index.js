@@ -17,28 +17,28 @@ exports.main = async (event, context) => {
   let res = await db.collection('config').doc('configInfo').get();
   let date = new Date();
   let strNow = moment(date).format("YYYY-MM-DD HH:mm:ss SSS");
+  // test
+  res.data.isDoneJieSuan = true;
   if (res.data.isDoneJieSuan) {
     //可以入库
     let numCurQi = res.data.numCurQi;
     let strCurQi = numCurQi + '';
     let strDate = strCurQi.substr(0, 8);
 
-    // let betData = await db.collection(`bet_${strDate}`).doc(numCurQi).get();
     let betObj = {
-      big: 2,
-      small: 10,
+      big: Math.round(Math.random() * 10),
+      small: Math.round(Math.random() * 10),
       openid: wxContext.OPENID,
       strNow
     }
     try {
       let betData = await db.collection(`bet_${strDate}`).doc(numCurQi).get();
-      console.error('betData========', betData);
       if (betData.data.length === 0) {
         //用add
         return await db.collection(`bet_${strDate}`).add({
           data: {
             _id: numCurQi,
-            bets: [betObj]
+            bets: _.push(betObj)
           }
         });
       } else {
@@ -46,7 +46,9 @@ exports.main = async (event, context) => {
         return await db.collection(`bet_${strDate}`).doc(numCurQi).update({
           // data 传入需要局部更新的数据
           data: {
-            bets: _.push(betObj)
+            bets: {
+              operands: _.push(betObj)
+            }
           }
         })
       }
@@ -69,9 +71,4 @@ exports.main = async (event, context) => {
     }
     return res;
   }
-
-
-
-
-
 }
